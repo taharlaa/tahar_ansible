@@ -1,8 +1,7 @@
 - name: Install zsh
-  community.general.pacman:
-    name: zsh
-    state: latest
-  become: yes
+  become: true
+  apt: name=zsh
+  state: latest
 
 - name: Install oh my zsh
   git:
