@@ -3,10 +3,13 @@
   become: true
 
   tasks:
+  - name: Update package list
+    command: apt update
+  
   - name: Install zsh
-    become: true
-    apt: name=zsh
-    state: latest
+    apt: 
+      name: zsh
+      state: latest
 
   - name: Install oh my zsh
     git:
