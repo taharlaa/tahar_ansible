@@ -1,0 +1,29 @@
+- name: Install zsh
+  community.general.pacman:
+    name: zsh
+    state: latest
+  become: yes
+
+- name: Install oh my zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.oh-my-zsh
+    depth: 1
+
+- name: Copy zshrc
+  copy:
+    src: zsh/zshrc
+    dest: ~/.zshrc
+    mode: 0644
+
+- name: Install spaceship prompt
+  git:
+    repo: https://github.com/spaceship-prompt/spaceship-prompt.git
+    dest: ~/.oh-my-zsh/custom/themes/spaceship-prompt
+    depth: 1
+
+- name: Enable spaceship theme
+  file:
+    src: ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme
+    dest: ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
+    state: link
